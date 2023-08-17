@@ -22,3 +22,24 @@ public:
         return ans;
     }
 };
+
+
+// Optimal Soluition 
+class Solution {
+public:
+    int countBinarySubstrings(string s) {
+        int prev_count=0,cur_count=1,ans=0;
+
+        for(int i=1;i<s.size();i++){
+            if(s[i]==s[i-1]){
+                cur_count++;
+            }
+            else{
+                ans+=min(cur_count,prev_count);
+                prev_count=cur_count;
+                cur_count=1;
+            }
+        }
+        return ans+min(prev_count,cur_count);
+    }
+};
